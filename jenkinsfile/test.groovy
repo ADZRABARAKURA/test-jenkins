@@ -16,7 +16,7 @@ pipeline {
                               extensions                       : [[$class           : 'RelativeTargetDirectory',
                                                                    relativeTargetDir: 'auto']],
                               submoduleCfg                     : [],
-                              userRemoteConfigs                : [[credentialsId: 'github_cred', url: 'https://github.com/ilyaburak/study_jenkins.git']]])
+                              userRemoteConfigs                : [[credentialsId: 'alexey_usov', url: 'https://github.com/ADZRABARAKURA/test-jenkins']]])
                 }
             }
         }
