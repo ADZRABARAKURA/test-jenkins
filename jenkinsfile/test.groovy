@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     cleanWs()
-                    //git(branch: 'master', credentialsId: 'IlyaBurakGit', url: 'https://github.com/ilyaburak/study_jenkins.git')
+                    //git(branch: 'master', credentialsId: 'alexey_usov', url: 'https://github.com/ADZRABARAKURA/test-jenkins')
                 }
                 script {
                     echo 'Start download project'
