@@ -1,6 +1,5 @@
-    
 pipeline {
-    agent{node('main')}
+    agent { node('main') }
     stages {
         stage('Dowload project') {
             steps {
@@ -10,27 +9,23 @@ pipeline {
                 }
                 script {
                     echo 'Start download project'
-                    checkout([$class                           : 'GitSCM',
-                              branches                         : [[name: '*/main']],
+                    checkout([$class: 'GitSCM',
+                              branches: [[name: '*/main']],
                               doGenerateSubmoduleConfigurations: false,
-                              extensions                       : [[$class           : 'RelativeTargetDirectory',
-                                                                   relativeTargetDir: 'auto']],
-                              submoduleCfg                     : [],
-                              userRemoteConfigs                : [[credentialsId: 'alexey_usov', url: 'https://github.com/ADZRABARAKURA/test-jenkins']]])
+                              extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'auto']],
+                              submoduleCfg: [],
+                              userRemoteConfigs: [[credentialsId: 'alexey_usov', url: 'https://github.com/ADZRABARAKURA/test-jenkins']]])
                 }
             }
         }
-        stage ('Create docker image'){
-            steps{
-                script{
+        stage('Create docker image') {
+            steps {
+                script {
                     sh "docker build ${WORKSPACE}/auto -t webapp"
-                    sh "docker run -d webapp"
-                    sh "docker exec -it webapp "df -h > ~/proc""
+                    sh "docker run -d --name webapp_container webapp"
+                    sh "docker exec -it webapp_container df -h > /proc"
                 }
             }
         }
-        
     }
-
-    
 }
