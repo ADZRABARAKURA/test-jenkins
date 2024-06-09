@@ -1,5 +1,5 @@
 pipeline {
-    agent { node('main') }
+    agent any
     stages {
         stage('Dowload project') {
             steps {
