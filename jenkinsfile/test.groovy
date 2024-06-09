@@ -1,17 +1,17 @@
     
 pipeline {
-    agent{node('master')}
+    agent{node('main')}
     stages {
         stage('Dowload project') {
             steps {
                 script {
                     cleanWs()
-                    //git(branch: 'master', credentialsId: 'alexey_usov', url: 'https://github.com/ADZRABARAKURA/test-jenkins')
+                    //git(branch: 'main', credentialsId: 'alexey_usov', url: 'https://github.com/ADZRABARAKURA/test-jenkins')
                 }
                 script {
                     echo 'Start download project'
                     checkout([$class                           : 'GitSCM',
-                              branches                         : [[name: '*/master']],
+                              branches                         : [[name: '*/main']],
                               doGenerateSubmoduleConfigurations: false,
                               extensions                       : [[$class           : 'RelativeTargetDirectory',
                                                                    relativeTargetDir: 'auto']],
